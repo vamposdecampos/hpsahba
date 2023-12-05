@@ -33,5 +33,6 @@ $(M)/.source.stamp:
 	for PATCH in $(PATCHES) ; do \
 		(cd $(M) && patch --no-backup-if-mismatch -Np3 -i "$${PATCH}") ; \
 	done
+	sed -re 's/^MODULE_VERSION\([^)]*/& "-1"/g' -i $(M)/hpsa.c
 	touch $@
 endif
